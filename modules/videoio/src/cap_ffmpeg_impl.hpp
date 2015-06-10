@@ -1553,7 +1553,7 @@ static inline bool cv_ff_codec_tag_match(const AVCodecTag *tags, enum CodecID id
     }
     return false;
 }
-static inline bool cv_ff_codec_tag_list_match(const AVCodecTag *const *tags, enum AVCodecID id, unsigned int tag)
+static inline bool cv_ff_codec_tag_list_match(const AVCodecTag *const *tags, enum CodecID id, unsigned int tag)
 {
     int i;
     for (i = 0; tags && tags[i]; i++) {
