@@ -159,7 +159,7 @@ extern "C" {
 #endif
 
 #if LIBAVCODEC_BUILD >= CALC_FFMPEG_VERSION(54,25,0)
-#  define CV_CODEC_ID AVCodecID
+#  define CV_CODEC_ID CodecID
 #  define CV_CODEC(name) AV_##name
 #else
 #  define CV_CODEC_ID CodecID
@@ -1171,7 +1171,7 @@ static AVStream *icv_add_video_stream_FFMPEG(AVFormatContext *oc,
 
 #if LIBAVCODEC_BUILD >= CALC_FFMPEG_VERSION(54,25,0)
     // Set per-codec defaults
-    AVCodecID c_id = c->codec_id;
+    CodecID c_id = c->codec_id;
     avcodec_get_context_defaults3(c, codec);
     // avcodec_get_context_defaults3 erases codec_id for some reason
     c->codec_id = c_id;
@@ -1543,7 +1543,7 @@ void CvVideoWriter_FFMPEG::close()
 #define CV_PRINTABLE_CHAR(ch) ((ch) < 32 ? '?' : (ch))
 #define CV_TAG_TO_PRINTABLE_CHAR4(tag) CV_PRINTABLE_CHAR((tag) & 255), CV_PRINTABLE_CHAR(((tag) >> 8) & 255), CV_PRINTABLE_CHAR(((tag) >> 16) & 255), CV_PRINTABLE_CHAR(((tag) >> 24) & 255)
 
-static inline bool cv_ff_codec_tag_match(const AVCodecTag *tags, enum AVCodecID id, unsigned int tag)
+static inline bool cv_ff_codec_tag_match(const AVCodecTag *tags, enum CodecID id, unsigned int tag)
 {
     while (tags->id != AV_CODEC_ID_NONE)
     {
